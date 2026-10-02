@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Builder
 
 public class Vehicule {
     @Id

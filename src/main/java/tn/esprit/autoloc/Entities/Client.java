@@ -1,10 +1,13 @@
 package tn.esprit.autoloc.Entities;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
+
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -14,14 +17,18 @@ import lombok.*;
 @ToString
 @Builder
 
-public class Agence {
+public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long IdAgence;
+    Long IdClient;
 
-    String Nom;
-    String Ville;
-    String Adresse;
-    String Telephone;
+    String nom;
+    String prenom;
+    String email;
+    String telephone;
+    String numPermis;
+    LocalDate DateInscription;
+
+
 
 }
