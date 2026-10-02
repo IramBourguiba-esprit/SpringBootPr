@@ -1,35 +1,55 @@
 package tn.esprit.autoloc.Entities;
+
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
+@Table(name = "vehicule")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
-
 public class Vehicule {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long IdVehicule;
+    private Long idVehicule;
 
-    String immatriculation;
-    String marque;
-    String modele;
+    @Column(nullable = false, unique = true, length = 20)
+    private String immatriculation;
+
+    @Column(nullable = false, length = 50)
+    private String marque;
+
+    @Column(nullable = false, length = 50)
+    private String modele;
 
     @Enumerated(EnumType.STRING)
-    CategorieVehicule categorie;
+    @Column(nullable = false, length = 20)
+    private CategorieVehicule categorie;
 
-    BigDecimal tarifJournalier;
+    @Column(nullable = false, precision = 10, scale = 2)
+    private BigDecimal tarifJournalier;
 
-    @Enumerated
-    StatutVehicule statut;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private StatutVehicule statut;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "agence_id")
+    private Agence agence;
 
+    @OneToMany(mappedBy = "vehicule")
+    private Set<Maintenance> maintenanceSet = new HashSet<>();
 
+    @OneToMany(mappedBy = "vehicule")
+    private Set<Equipement> equipementSet = new HashSet<>();
 
-
+    @OneToMany(mappedBy = "vehicule")
+    private Set<Reservation> reservationSet = new HashSet<>();
 }

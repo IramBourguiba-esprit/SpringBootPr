@@ -7,21 +7,26 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "paiement")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
-
 public class Paiement {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long IdPaiement;
+    private Long idPaiement;
 
-    BigDecimal Montant;
-    LocalDate DatePaiement;
+    private BigDecimal montant;
+    private LocalDate datePaiement;
 
     @Enumerated(EnumType.STRING)
-    ModePaiement ModePaiement;
+    @Column(nullable = false, length = 20)
+    private ModePaiement modePaiement;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "contrat_id")
+    private Contrat contrat;
 }

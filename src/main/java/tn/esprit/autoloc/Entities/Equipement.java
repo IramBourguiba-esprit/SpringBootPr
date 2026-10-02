@@ -1,24 +1,24 @@
 package tn.esprit.autoloc.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
+@Table(name = "equipement")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
-
 public class Equipement {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long IdEquipement;
+    private Long idEquipement;
 
-    String Libelle;
+    private String libelle;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "vehicule_id")
+    private Vehicule vehicule;
 }

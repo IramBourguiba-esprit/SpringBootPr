@@ -1,27 +1,32 @@
 package tn.esprit.autoloc.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
+@Table(name = "agence")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
-
 public class Agence {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long IdAgence;
+    private Long idAgence;
 
-    String Nom;
-    String Ville;
-    String Adresse;
-    String Telephone;
+    private String nom;
+    private String ville;
+    private String adresse;
+    private String telephone;
 
+    @OneToMany(mappedBy = "agence")
+    private Set<Employe> employeSet = new HashSet<>();
+
+    @OneToMany(mappedBy = "agence")
+    private Set<Vehicule> vehiculeSet = new HashSet<>();
 }

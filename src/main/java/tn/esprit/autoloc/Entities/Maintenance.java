@@ -1,28 +1,28 @@
 package tn.esprit.autoloc.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "maintenance")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
-
 public class Maintenance {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long IdMaintenance;
+    private Long idMaintenance;
 
-    LocalDate DateDebut;
-    LocalDate DateFin;
-    String Description;
+    private LocalDate dateDebut;
+    private LocalDate dateFin;
+    private String description;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "vehicule_id")
+    private Vehicule vehicule;
 }

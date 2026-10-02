@@ -1,23 +1,29 @@
 package tn.esprit.autoloc.Entities;
+
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
+@Table(name = "employe")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
-
 public class Employe {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long IdEmploye;
+    private Long idEmploye;
 
-    String Nom;
-    String Prenom;
+    private String nom;
+    private String prenom;
 
     @Enumerated(EnumType.STRING)
-    RoleEmploye Role;
+    @Column(nullable = false, length = 20)
+    private RoleEmploye role;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "agence_id")
+    private Agence agence;
 }

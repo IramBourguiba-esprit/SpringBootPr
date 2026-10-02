@@ -24,39 +24,18 @@ public class DataInitializer implements CommandLineRunner {
             return;
         }
 
-        Vehicule v1 = new Vehicule(
-                null,
-                "123-TUN-4567",
-                "Renault",
-                "Clio",
-                CategorieVehicule.CITADINE,
-                new BigDecimal("85.00"),
-                StatutVehicule.DISPONIBLE
-        );
+        Vehicule v1 = Vehicule.builder()
+                .immatriculation("123-TUN-4567")
+                .marque("Renault")
+                .modele("Clio")
+                .categorie(CategorieVehicule.CITADINE)
+                .tarifJournalier(new BigDecimal("85.00"))
+                .statut(StatutVehicule.DISPONIBLE)
+                .build();
 
-        Vehicule v2 = new Vehicule(
-                null,
-                "789-TUN-1234",
-                "Peugeot",
-                "3008",
-                CategorieVehicule.SUV,
-                new BigDecimal("150.00"),
-                StatutVehicule.DISPONIBLE
-        );
 
-        Vehicule v3 = new Vehicule(
-                null,
-                "456-TUN-7890",
-                "Volkswagen",
-                "Golf",
-                CategorieVehicule.BERLINE,
-                new BigDecimal("120.00"),
-                StatutVehicule.LOUE
-        );
 
         vehiculeRepository.save(v1);
-        vehiculeRepository.save(v2);
-        vehiculeRepository.save(v3);
 
         System.out.println(vehiculeRepository.count() + " véhicules insérés en base de données");
     }
