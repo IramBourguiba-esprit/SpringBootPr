@@ -26,16 +26,16 @@ public class ClientServiceImpl implements IClient {
 
     @Override
     public List<Client> retrieveClient() {
-        return List.of();
+        return clientRepo.findAll();
     }
 
     @Override
     public Client retrieveById(long id) {
-        return null;
+        return clientRepo.findById(id).orElse(null);
     }
 
     @Override
     public Client updateClient(Client client) {
-        return null;
+        return clientRepo.save(client);
     }
 }
