@@ -1,5 +1,6 @@
 package tn.esprit.autoloc.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,5 +26,6 @@ public class Employe {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "agence_id")
+    @JsonIgnore
     private Agence agence;
 }

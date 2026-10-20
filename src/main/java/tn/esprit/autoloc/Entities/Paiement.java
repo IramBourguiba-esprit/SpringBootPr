@@ -1,5 +1,6 @@
 package tn.esprit.autoloc.Entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,5 +29,6 @@ public class Paiement {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "contrat_id")
+    @JsonBackReference
     private Contrat contrat;
 }

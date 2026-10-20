@@ -1,5 +1,6 @@
 package tn.esprit.autoloc.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,5 +25,6 @@ public class Maintenance {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "vehicule_id")
+    @JsonIgnore
     private Vehicule vehicule;
 }

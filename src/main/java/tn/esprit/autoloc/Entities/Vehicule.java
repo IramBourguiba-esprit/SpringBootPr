@@ -1,5 +1,6 @@
 package tn.esprit.autoloc.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -42,14 +43,18 @@ public class Vehicule {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "agence_id")
+    @JsonIgnore
     private Agence agence;
 
     @OneToMany(mappedBy = "vehicule")
+    @JsonIgnore
     private Set<Maintenance> maintenanceSet = new HashSet<>();
 
     @OneToMany(mappedBy = "vehicule")
+    @JsonIgnore
     private Set<Equipement> equipementSet = new HashSet<>();
 
     @OneToMany(mappedBy = "vehicule")
+    @JsonIgnore
     private Set<Reservation> reservationSet = new HashSet<>();
 }
